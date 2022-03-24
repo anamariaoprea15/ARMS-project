@@ -36,7 +36,12 @@ for page in set_links:
             ingr_list.append(li.text.strip())
         print("Ingredients list = ", ingr_list)
 
-        # method - TO DO
+        # method
+        data = soup.find('div', attrs={'class': 'field-item even'}).find('ol')
+        steps_list = []
+        for li in data.findAll('li'):
+            steps_list.append(li.text.strip())
+        print("Method steps list = ", steps_list)
         #datele afisate ar trebui adaugate intr-o baza de date
 
 print("---------")
