@@ -8,13 +8,12 @@ lst = data.files
 for ingr in data['ingredients']:
     print(ingr)
 
-header = ['Title', 'Ingredient']
+header = ['Source', 'Target']
 
 with open("recipes.json", 'r') as f:
     json_data = json.load(f)
 
-# data = ['Afghanistan', 652090, 'AF', 'AFG']
-
+csv_data_array = []
 with open('recipes.csv', 'w', encoding='UTF8', newline='') as f:
     writer = csv.writer(f)
 
@@ -27,5 +26,7 @@ with open('recipes.csv', 'w', encoding='UTF8', newline='') as f:
                 if len(ingr) > 2 and ingr in ingr_list:
                     # print(ingr)
                     csv_data = [recipe['title'], ingr]
-                    print(csv_data)
-                    writer.writerow(csv_data)
+                    if csv_data not in csv_data_array:
+                        csv_data_array.append(csv_data)
+                        print(csv_data)
+                        writer.writerow(csv_data)

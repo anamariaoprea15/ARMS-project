@@ -7,8 +7,8 @@ import numpy as np
 
 json_data = {'recipes': []}
 # links to pages - de parcurs si salvat retetele pentru toate paginile (sus e doar pentru prima pagina)
-for i in range(1, 2):
-    print("!!!!!!!!!!!!!PAGINA", i)
+for i in range(1, 17):
+    print("PAGINA", i)
     url = "https://www.vegansociety.com/lifestyle/recipes?page="
     url += str(i)
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
@@ -44,6 +44,8 @@ for i in range(1, 2):
             # ingredients
             data = soup.find('div', attrs={'class': 'field-item even'}).find('ul')
             ingr_list = []
+            if data == None:
+                continue
             for li in data.findAll('li'):
                 ingr_list.append(li.text.strip())
             print("Ingredients list = ", ingr_list)
